@@ -4,6 +4,45 @@
   
   
   <entry>
+    <title>trie tree</title>
+    <link href="/2023/07/30/trie-tree/"/>
+    <url>/2023/07/30/trie-tree/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2023/07/09/2019-11-22-create_blog_with_github_pages/"/>
+    <url>/2023/07/09/2019-11-22-create_blog_with_github_pages/</url>
+    
+    <content type="html"><![CDATA[<h2 id="this-is-a-test"><a href="#this-is-a-test" class="headerlink" title="this is a test"></a>this is a test</h2><h3 id="aseefa"><a href="#aseefa" class="headerlink" title="aseefa"></a>aseefa</h3><h3 id="sefasdfa"><a href="#sefasdfa" class="headerlink" title="sefasdfa"></a>sefasdfa</h3>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>马拉车</title>
+    <link href="/2023/01/26/test/"/>
+    <url>/2023/01/26/test/</url>
+    
+    <content type="html"><![CDATA[<figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></div></td><td class="code"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cctype&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">2e6</span> + <span class="hljs-number">10</span>;<br><span class="hljs-keyword">int</span> p[<span class="hljs-number">4</span> * N];<span class="hljs-comment">//p[i]记录s[i]能单侧延伸多长 </span><br>string a, s;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getstr</span><span class="hljs-params">()</span></span>&#123;<span class="hljs-comment">//预处理字符串</span><br>    s += <span class="hljs-string">&quot;!#&quot;</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; a.<span class="hljs-built_in">size</span>(); i++)&#123;<br>        s += a[i];<br>        s += <span class="hljs-string">&quot;#&quot;</span>;<br>    &#125;<br>    s += <span class="hljs-string">&quot;$&quot;</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">manacher</span><span class="hljs-params">()</span></span>&#123;<br><span class="hljs-keyword">int</span> r = <span class="hljs-number">0</span>;<span class="hljs-comment">//最右边界</span><br><span class="hljs-keyword">int</span> c = <span class="hljs-number">0</span>;<span class="hljs-comment">//当前中心 </span><br><span class="hljs-keyword">int</span> len = s.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>, ans = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= len; i++)&#123;<br><span class="hljs-keyword">if</span>(i &lt; r)&#123;<br>p[i] = <span class="hljs-built_in">min</span>(r-i, p[<span class="hljs-number">2</span>*c-i]);<span class="hljs-comment">//点i关于c的对称点2*c-i</span><br>&#125;<br><span class="hljs-keyword">else</span><br>p[i] = <span class="hljs-number">1</span>;<span class="hljs-comment">//单个字符延伸长度为1</span><br><span class="hljs-keyword">while</span>(s[i+p[i]] == s[i-p[i]])&#123;<span class="hljs-comment">//中心扩展法，根据需要加条件 </span><br>p[i]++;<br>&#125;<br><span class="hljs-keyword">if</span>(i+p[i] &gt; r)&#123;<span class="hljs-comment">//更新中心点及最右边界</span><br>r = i+p[i];<br>c = i;<br>&#125;<br>ans = <span class="hljs-built_in">max</span>(ans, p[i]);<br>&#125;<br><span class="hljs-keyword">return</span> ans<span class="hljs-number">-1</span>;<span class="hljs-comment">//当前位置的p[i]-1就是该位置能构成的最长回文串</span><br>&#125; <br> <br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br><span class="hljs-comment">//预处理s，处理为%#a#b#c#这样形式 </span><br><span class="hljs-keyword">int</span> n;<br>    cin &gt;&gt; n &gt;&gt; a;<br>    <span class="hljs-built_in">getstr</span>();<br>    <span class="hljs-keyword">int</span> ans = <span class="hljs-built_in">manacher</span>();<br>    cout &lt;&lt; ans &lt;&lt; endl;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>快速排序</title>
     <link href="/2022/01/26/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"/>
     <url>/2022/01/26/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</url>
